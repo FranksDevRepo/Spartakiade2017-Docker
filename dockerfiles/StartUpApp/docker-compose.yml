@@ -1,0 +1,20 @@
+version: '2'
+services: 
+  rabbitmq:
+    image: rabbitmq:3-management
+
+  mongo:
+    image: mongo:3.2
+  
+  netcore:
+    image: microsoft/dotnet:core
+    
+  mono:
+    image: mono:4.6.1
+    
+  web:
+    depends_on:
+      - rabbitmq
+    image: fpommerening/spartakiade2017-rabbitmq:StartupApp
+    ports:
+      - 19317:19317

@@ -25,7 +25,7 @@ Keine Sorge wenn du bei den folgenden Befehle nur Bahnhof verstehst. Im Workshop
 
 5) Webbrowser starten und die Seite <a href ="http://localhost:18318">http://localhost:18318</a> öffnen. 
 Wenn alles korrekt gestartet ist, siehst du folgende Seite.
-<img src="images/startupApp.PNG" alt="Screenshot Startup-App"/>
+<img src="images/startupApp.png" alt="Screenshot Startup-App"/>
 
 6) Anwendung mit CTRL + C beenden
 

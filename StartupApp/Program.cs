@@ -9,7 +9,7 @@ namespace StartupApp
     {
         static void Main(string[] args)
         {
-            using (var host = new NancyHost(new Uri("http://localhost:18318")))
+            using (var host = new NancyHost(new Uri("http://localhost:19317")))
             {
                 StaticConfiguration.DisableErrorTraces = false;
                 host.Start();

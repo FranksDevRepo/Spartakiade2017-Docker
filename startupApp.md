@@ -23,7 +23,7 @@ Keine Sorge wenn du bei den folgenden Befehle nur Bahnhof verstehst. Im Workshop
 	
 	docker-compose up
 
-5) Webbrowser starten und die Seite <a href ="http://localhost:18318">http://localhost:18318</a> öffnen. 
+5) Webbrowser starten und die Seite <a href ="http://localhost:19317">http://localhost:19317</a> öffnen. 
 Wenn alles korrekt gestartet ist, siehst du folgende Seite.
 <img src="images/startupApp.png" alt="Screenshot Startup-App"/>
 

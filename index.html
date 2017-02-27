@@ -69,8 +69,6 @@
                             </ul>
                         </li>
                     </ul>
-
-
                 </section>
             </section>
 			<section>
@@ -78,18 +76,76 @@
 					<h2>Docker im Überblick</h2>
 				</section>
 				 <section>
-					Was ist Docker?
+					<h3>Was ist Docker?</h3>
+					Anwendungsvirtualisierung: Anwendungen werden unter Verwendung von Betriebssystemvirtualisierung in Containern isoliert ausgeführt.
+					<br />
+					<br />
+					<span class="fragment">
+						Buzzword-Bingo:
+					</span>
+					<br/>
+						<ul>
+							<li class="fragment">Microservices</li>
+							<li class="fragment">DevOps</li>
+							<li class="fragment">CI / CD (Continuous Integration / Continuous Deployment)</li>
+							<li class="fragment">Xaas (Anything as a Service)</li>
+							<li class="fragment">Portablität</li>
+						</ul>
 				 </section>
 				 <section>
-					 <h3>Images<h3>
+					<h3>Virtualisierung vs. Container</h3>
+					TBD: Grafik einfügen
 				 </section>
 				 <section>
-					 <h3>Container</h3>
+					 <h3>Images</h3>
+						<ul>
+							<li>Template für Container</li>
+							<li>Snapshot / Archiv</li>
+							<li>ReadOnly und Versioniert </li>
+							<li>Ebenenprizip (Speicherung nur Differenzen)</li>
+						</ul><br />
+					TBD: Übersichtgrafik
+				 </section>
+				 <section>
+					<h3>Container</h3>
+					<ul>
+						<li>Laufende Instanz eines Image</li>
+						<li>nur zur Laufzeit existent</li>
+					</ul>
+					TBD: Grafik
 				 </section>
 				 <section>
 					<h3>Docker-Ökosystem</h3>
-				 </section>
-				 <section>
+					Docker umfasst mehr als die Ausführungsumgebung für Container:
+					<br />
+					<table>
+						<tbody>
+							<tr>
+								<td>Compose</td>
+								<td>Verwalten von Anwendungsstacks</td>
+							</tr>
+							<tr>
+								<td>Hub</td>
+								<td>(öffentliche) Docker-Registy</td>
+							</tr>
+							<tr>
+								<td>Swarm / Swarm Mode</td>
+								<td>Verwaltung von Container in Clustern</td>
+							</tr>
+							<tr>
+								<td>Cloud</td>
+								<td>Hostinganbieter</td>
+							</tr>
+							<tr>
+								<td>Maschine</td>
+								<td>Bereitstellung von Docker-Hosts</td>
+							</tr>
+							<tr>
+								<td>Kinematic</td>
+								<td>Grafikes Verwaltungswerkzeug</td>
+							</tr>
+						</tbody>
+					</table>
 				 </section>
 			</section>
 			<section>
@@ -100,16 +156,29 @@
 					Start im März 2013 <br/>
 					<span class="fragment">Alles neu</span> <span class="fragment">-  NEIN</span></br>
 					<span class="fragment">
-						Verwendung von erprobten Linux-Technologien
+						Verwendung von erprobten Technologien des Linux-Kernel
 						<ul>
-							<li>Cgroups</li>
-							<li>Namespaces</li>
-							<li>LXC (-> OpenVZ / BSD jails)</li>
+							<li>LXC (BSD Jails / Solaris Zonen / OpenVZ)</li>
+							<li>Cgroups
+								<ul>
+									<li>Ressourcenlimits</li>
+									<li>CPU-Zeit, Speicher, IO ...</li>
+								</ul>
+							</li>
+							<li>Namespaces
+							<ul>
+								<li>Simulation geschlossener Umgebungen</li>
+								<li>Hostnamen, Netzwerk, Prozesse ...</li>
+							</ul>
+							</li>
+							<li>chroot (Verbindung des Mountpunkt)</li>
 						</ul>
 					</span>
 				</section>
 				<section>
 					Heute Bestandteil viele Standard-Distributionen
+					<img src="images/ubuntulogo.png" style="border: 0px;float:right;height: 100px"/>
+					<img src="images/archlinuxlogo.svg" style="border: 0px; float:left;height: 100px; margin-top: 50px"/>
 					<ul>
 						<li>Arch Linux</li>
 						<li>CentOS</li>
@@ -117,15 +186,17 @@
 						<li>openSUSE / SUSE Linux Enterprise</li>
 						<li>Ubuntu</li>
 						<li>...</li>
-						TBD: Logos Distribution
 					</ul>
+					
 					<br/>
 					<br/>
+					<img src="images/rancherlogo.png" style="border: 0px; float:left;height: 100px; margin-top: 0px"/>
 					Spezielle Docker-Host Distributionen<br/
 					<ul>
 						<li>Core-OS</li>
 						<li>Rancher-OS</li>
 					</ul>
+					
 				</section>
 			</section>
 			<section>
@@ -260,6 +331,9 @@
 			</section>
 			<section>
 				<h3>Quellen:</h3>
+				https://blog.docker.com/media/Rancher-Logo-Final-1.png
+				http://design.ubuntu.com/wp-content/uploads/ubuntu-logo14.png
+				https://www.archlinux.org/static/logos/archlinux-logo-dark-1200dpi.b42bd35d5916.png
 			</section>
 
 
@@ -272,7 +346,14 @@
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				history: true,
+				controls: true,
+            	progress: true,
+            	history: true,
+            	center: true,
+            	width: 1270,
+            	height: 720,
+            	slideNumber: false,
+            	margin: 0.0,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [

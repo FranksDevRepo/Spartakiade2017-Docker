@@ -39,6 +39,7 @@ Die folgende Liste gibt einen Überblick über mögliche Themen.
 
 [x] Notebook mit 2015 mit Update 3 (z.B. <a href="https://www.visualstudio.com/de-de/downloads/download-visual-studio-vs.aspx">Community Edition</a>)<br/>
 [x] <a href="https://www.microsoft.com/net/core">.NET Core mit VS 2015 Tooling</a></br>
+[x] <a href="https://go.microsoft.com/fwlink/?LinkID=836281">.NET Core 1.0.3 LTS SDK</a></br>
 [x] <a href="https://code.visualstudio.com/">Visual Studio Code</a></br>
 [x] Dockerumgebung z.B. <a href="https://www.docker.com/products/docker-toolbox">Docker-Toolbox</a> oder <a href="https://docs.docker.com/docker-for-windows/"> Docker for Windows</a></br>
 [x] Netzwerkkabel ca. 3 bis 5 m

@@ -8,6 +8,9 @@ services:
   
   netcore:
     image: microsoft/dotnet:1.0.3-core
+  
+  ubuntu:
+    image: ubuntu:latest
     
   mono:
     image: mono:4.6.1

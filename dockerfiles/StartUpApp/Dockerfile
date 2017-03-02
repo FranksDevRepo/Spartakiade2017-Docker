@@ -1,7 +1,7 @@
 FROM mono:4.6.1
 MAINTAINER Frank Pommerening "frank@pommerening-online.de"
-ENV REFRESHED_AT 2017-01-29
-ENV StartupApp_VERSION 0.0.1
+ENV REFRESHED_AT 2017-03-02
+ENV StartupApp_VERSION 0.0.2
 
 RUN set -x \
 	&& apt-get update && apt-get install -y --no-install-recommends ca-certificates wget p7zip && rm -rf /var/lib/apt/lists/* \

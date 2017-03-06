@@ -126,7 +126,7 @@
 							</tr>
 							<tr>
 								<td>Hub</td>
-								<td>(öffentliche) Docker-Registy</td>
+								<td>(öffentliche) Docker-Registry</td>
 							</tr>
 							<tr>
 								<td>Swarm / Swarm Mode</td>
@@ -139,6 +139,10 @@
 							<tr>
 								<td>Maschine</td>
 								<td>Bereitstellung von Docker-Hosts</td>
+							</tr>
+							<tr>
+								<td>Store</td>
+								<td>Bereitstellung zertifizierter Images</td>
 							</tr>
 							<tr>
 								<td>Kinematic</td>
@@ -196,7 +200,6 @@
 						<li>Core-OS</li>
 						<li>Rancher-OS</li>
 					</ul>
-					
 				</section>
 			</section>
 			<section>
@@ -249,7 +252,79 @@
 			</section>
 			<section>
 				<section>
-					Mein erster Container
+					<h2>Docker - Grundlagen</h2>
+					TBD
+				</section>
+				
+				<section>
+					<h3>Container <a href="https://docs.docker.com/engine/reference/run/" target="_blank">erstellen</a>
+					 </h3>
+					 <pre><code class="docker">docker run [OPTIONS] IMAGE[:Tag] [COMMAND]</code></pre>
+ <table>
+	 <tbody>
+		 <tr>
+			 <th>Name</th>
+			 <td>--name [Name] (muss eindeutig im Host sein)</td>
+		 </tr>
+		 <tr>
+			 <th>Startverhalten</th>
+			 <td>-it (interaktives Terminal) /-d (Hintergrunddienst)</td>
+		 </tr>
+		 <tr>
+			 <th>Volumen-Mapping</th>
+			 <td>-v Quellpfad:Zielpfad</td>
+		 </tr>
+		 <tr>
+			 <th>Port-Mapping</th>
+			 <td>-p Container-Port:Host-Port</td>
+		 </tr>
+		 <tr>
+			 <th>Endverhalten</th>
+			 <td>-rm Container direkt entfernen</td>
+		 </tr>
+	 </tbody>
+ </table>
+				</section>
+				<section>
+					<h3>Infos / Log</h3>
+					Docker-Host
+					<pre><code class="docker">docker info </code></pre>
+					Container
+					 <pre><code class="docker">docker ps [OPTIONS] </code></pre>
+					 Log-Meldung eines Containers
+					<pre><code class="docker">docker logs [OPTIONS] </code></pre>
+				</section>
+				<section>
+					<h3>Container
+						<a href="https://docs.docker.com/engine/reference/commandline/start/" target="_blank">start</a> /
+						<a href="https://docs.docker.com/engine/reference/commandline/stop/" target="_blank">stoppen</a>
+					</h3>
+					Die Angabe des Container erfolgt per Name oder Hash.
+ 					<pre><code class="docker">docker start [OPTIONS] CONTAINER</code></pre>
+					
+					<pre><code class="docker">docker stop [OPTIONS] CONTAINER</code></pre>
+					
+					<pre><code class="docker">docker attach [OPTIONS] CONTAINER</code></pre>
+					
+				</section>
+				
+				<section>
+					<h3>Images herunterladen / aktualisieren</h3>
+					<pre><code class="docker">docker pull IMAGENAME</code></pre>
+				</section>
+				<section>
+					<h3>Container / Images löschen</h3>
+					<pre><code class="docker">docker rm [OPTIONS] </code></pre>
+
+					<pre><code class="docker">docker rmi [OPTIONS] </code></pre>
+				</section>
+				<section>
+					<h3>Image aus Container erstellen</h3>
+				</section>
+				<section>
+					<h3>Image zur Registry übertragen</h3>
+					<pre><code class="docker">docker push [OPTIONS] IMAGENAME[:tag] </code></pre>
+					Vor dewr
 				</section>
 			</section>
 			<section>
@@ -276,6 +351,13 @@
 			</section>
 			<section>
 				<section>
+					Networking
+				</section>
+				<section>
+				</section>
+			</section>
+			<section>
+				<section>
 					Docker-Compose
 				</section>
 			</section>
@@ -298,24 +380,7 @@
 			</section>
 			<section>
 				<section>
-					<h2>CI / DC</h2>
-					continuous integration / continuous deployment
-				</section>
-				<section>
-					<h3>TFS / Visual Studio Team Services</h3>
-				</section>
-				<section>
-					<h3>Gitlab</h3>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h2>Docker Swarm</h2>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h2>Docker auf Raspberry PI</h2>
+					<h2>Docker auf Raspberry PI 3</h2>
 				</section>
 				<section>
 					Installation
@@ -326,7 +391,29 @@
 			</section>
 			<section>
 				<section>
+					<h2>CI / DC mit TFS / Visual Studio Team Services</h2>
+				</section>
+				<section>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Github + Dockerhub</h2>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Docker Swarm Mode</h2>
+				</section>
+			</section>
+			<section>
+				<section>
 					.Net Client API
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>CI / DC mit Gitlab</h2>
 				</section>
 			</section>
 			<section>
@@ -350,17 +437,22 @@
             	progress: true,
             	history: true,
             	center: true,
-            	width: 1270,
+            	width: 1250,
             	height: 720,
             	slideNumber: false,
             	margin: 0.0,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+                    { src: 'plugin/multiplex/client.js', async: true }
 				]
 			});
 		</script>

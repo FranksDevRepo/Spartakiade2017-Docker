@@ -23,6 +23,17 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+	<style>
+		a.infolink {
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			background-image: url("images/about.svg");
+			background-size:cover;
+
+		}
+    </style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -257,7 +268,7 @@
 				</section>
 				
 				<section>
-					<h3>Container <a href="https://docs.docker.com/engine/reference/run/" target="_blank">erstellen</a>
+					<h3>Container erstellen&nbsp;&nbsp;<a href="https://docs.docker.com/engine/reference/run/" class="infolink" target="_blank"></a>
 					 </h3>
 					 <pre><code class="docker">docker run [OPTIONS] IMAGE[:Tag] [COMMAND]</code></pre>
  <table>
@@ -286,45 +297,118 @@
  </table>
 				</section>
 				<section>
-					<h3>Infos / Log</h3>
-					Docker-Host
-					<pre><code class="docker">docker info </code></pre>
-					Container
+					<h3>Informationen</h3>
+					<h4>Docker-Host&nbsp;<a href="https://docs.docker.com/engine/reference/commandline/info/" class="infolink" target="_blank" ></a></h4>
+					<pre><code class="docker">docker info [OPTIONS]</code></pre> 
+					Zeigt Informationen über die Docker-Installation und <br />den Host (OS / CPU / RAM ...).
+					<br />
+					<br />
+					<h4>Container&nbsp;<a href="https://docs.docker.com/engine/reference/commandline/ps/" class="infolink" target="_blank" ></a></h4>
 					 <pre><code class="docker">docker ps [OPTIONS] </code></pre>
-					 Log-Meldung eines Containers
-					<pre><code class="docker">docker logs [OPTIONS] </code></pre>
+					 Zeigt Informationen für die Container z.B. Name, Image, Port ... an.
+<table>
+	 <tbody>
+		 <tr>
+			 <td>-a / --all</th>
+			 <td>zeigt Informationen zu alle, auch inaktive, Container</td>
+		 </tr>
+		 <tr>
+			 <td>-l / --latest</th>
+			 <td>zeigt Informationen zum letzten erstellen Contrainer</td>
+		 </tr>
+</tbody>
+</table>				
 				</section>
 				<section>
-					<h3>Container
-						<a href="https://docs.docker.com/engine/reference/commandline/start/" target="_blank">start</a> /
-						<a href="https://docs.docker.com/engine/reference/commandline/stop/" target="_blank">stoppen</a>
-					</h3>
-					Die Angabe des Container erfolgt per Name oder Hash.
- 					<pre><code class="docker">docker start [OPTIONS] CONTAINER</code></pre>
-					
+					<h3>Container-Operationen</h3>
+Die Angabe des Containers erfolgt per Name oder Hash.
+					<h4>Starten <a href="https://docs.docker.com/engine/reference/commandline/start/" class="infolink" target="_blank"></a></h4>
+					<pre><code class="docker">docker start [OPTIONS] CONTAINER</code></pre>
+<table>
+	 <tbody>
+		 <tr>
+			 <td>-a / --attach</th>
+			 <td>Verbindung mit der Standardausgabe herstellen.</td>
+		 </tr>
+		 <tr>
+			 <td>-i / --interactive</th>
+			 <td>Verbindung mit der Standardeingabe herstellen.</td>
+		 </tr>
+</tbody>
+</table>
+<br />
+					<h4>Stoppen <a href="https://docs.docker.com/engine/reference/commandline/stop/" class="infolink" target="_blank"></a></h4>
 					<pre><code class="docker">docker stop [OPTIONS] CONTAINER</code></pre>
-					
+<table>
+	 <tbody>
+		 <tr>
+			 <td>-t / --time</th>
+			 <td>Zeit, in Sekunden, bis Container gekillt wird.</td>
+		 </tr>
+</tbody>
+</table>
+				</section>
+				<section>
+					<h4>Verbindung herstellen <a href="https://docs.docker.com/engine/reference/commandline/attach/" class="infolink" target="_blank"></a></h4>
 					<pre><code class="docker">docker attach [OPTIONS] CONTAINER</code></pre>
-					
+					Stellt eine Verbindung mit der Standardausgabe des laufenden Containers her.
+					<br />
+					<br />
+					<h4>Löschen <a href="https://docs.docker.com/engine/reference/commandline/rm/" class="infolink" target="_blank"></a></h4>
+					<pre><code class="docker">docker rm [OPTIONS] CONTAINER</code></pre>
+<table>
+	 <tbody>
+		 <tr>
+			 <td>-f / --force</th>
+			 <td>Bricht den noch laufenden Container ab</td>
+		 </tr>
+		 <tr>
+			 <td>-v / --volumes</th>
+			 <td>Löscht die mit dem Container verbundenen Volumes</td>
+		 </tr>
+</tbody>
+</table>
+					<br />
+					 <h4>Log-Meldung anzeigen<a href="https://docs.docker.com/engine/reference/commandline/logs/" class="infolink" target="_blank" ></a></h4>
+					<pre><code class="docker">docker logs [OPTIONS] CONTAINER</code></pre>
 				</section>
-				
 				<section>
-					<h3>Images herunterladen / aktualisieren</h3>
-					<pre><code class="docker">docker pull IMAGENAME</code></pre>
-				</section>
-				<section>
-					<h3>Container / Images löschen</h3>
-					<pre><code class="docker">docker rm [OPTIONS] </code></pre>
-
+					<h3>Image-Opterationen </h3>
+					<h4>Herunterladen / Aktualisieren<a href="https://docs.docker.com/engine/reference/commandline/pull/" class="infolink" target="_blank" ></a></h4>
+					<pre><code class="docker">docker pull [OPTIONS] [Registry]IMAGENAME</code></pre>
+					Ist keine Registry angegeben wird der Default i.d.R. Docker-Hub verwendet.
+					Beim Aktualisieren bleibt das vorhandene Image erhalten.
+					<pre><code class="docker">docker pull  myregistry.local:5000/myuser/myimage</code></pre>
+					<br />
+					<h4>Löschen<a href="https://docs.docker.com/engine/reference/commandline/rmi/" class="infolink" target="_blank" ></a></h4>
 					<pre><code class="docker">docker rmi [OPTIONS] </code></pre>
+<table>
+	 <tbody>
+		 <tr>
+			 <td>-f / --force</th>
+			 <td>Erzingt das Löschen</td>
+		 </tr>
+</tbody>
+</table>			
 				</section>
 				<section>
-					<h3>Image aus Container erstellen</h3>
-				</section>
-				<section>
-					<h3>Image zur Registry übertragen</h3>
-					<pre><code class="docker">docker push [OPTIONS] IMAGENAME[:tag] </code></pre>
-					Vor dewr
+					<h4>Erstellung aus Container <a href="https://docs.docker.com/engine/reference/commandline/commit/" class="infolink" target="_blank" ></a></h4>
+					<pre><code class="docker">docker commit [OPTIONS] CONTRAINER [REPOSITORY[:TAG]]</code></pre>
+<table>
+	 <tbody>
+		 <tr>
+			 <td>-a / --author</th>
+			 <td>Ersteller</td>
+		 </tr>
+		 <tr>
+			 <td>-m / --message</th>
+			 <td>Commit message</td>
+		 </tr>
+</tbody>
+</table><br/>
+<h4>Übertragung zur Registry <a href="https://docs.docker.com/engine/reference/commandline/push/" class="infolink" target="_blank" ></a></h4>
+					<pre><code class="docker">docker push [OPTIONS] [Registry]IMAGENAME[:tag] </code></pre>
+					Vor der Übertragung in den Dockerhub ist eine Authentifizierung erforderlich.
 				</section>
 			</section>
 			<section>

@@ -4,7 +4,7 @@ ENV REFRESHED_AT 2017-03-08
 
 COPY WebApp /WebApp
 
-#RUN cd /WebApp && dotnet restore && dotnet build
+RUN cd /WebApp && dotnet restore && dotnet build
 WORKDIR /WebApp
-#CMD DOTNET RUN
-
+EXPOSE 5000
+ENTRYPOINT ["dotnet", "run"]

@@ -532,16 +532,138 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 				</section>
 				<section>
 					<h3>Build inside</h3>
+					Die Anwendung wird im Contrainer während der Imageerstellung gebaut.
+					<br />
+					<br />
+<table>
+	 <tbody>
+		 <tr>
+			 <th>Vorteile</th>
+			 <th>Nachteile</th>
+		 </tr>
+		 <tr>
+			 <td>
+				<ul>
+					<li>Buildserver nicht erforderlich</li>
+					<li>Weniger komplex</li>
+				</ul>
+			 </td>
+			<td>
+				<ul>
+					<li>Quellcode und Buildabhängigkeiten ggf. im Image enthalten</li>
+					<li>Basisimage größer (SDK erforderlich)</li>
+					<li>i.d.R. entstehen größere Images</li>
+					<li>Buildfehler schwerer zu debuggen</li>
+				</ul>
+			</td>
+		 </tr>
+</tbody>
+</table>
 				</section>
 				<section>
 					<h3>Build outside</h3>
+					Die Anwendung unabhängig vom Container erstellt. Die entstandenen Artefakte werden bei der Imageerstellung kopiert.
+					<br />
+					<br />
+			<table>
+	 <tbody>
+		 <tr>
+			 <th>Vorteile</th>
+			 <th>Nachteile</th>
+		 </tr>
+		 <tr>
+			 <td>
+				<ul>
+					<li>i.d.R. kleinere Images und Basisimages</li>
+					<li>Build unabhängig von der Imageestellung</li>
+					<li>Quellcode und Buildabhängigkeiten nicht enthalten</li>
+				</ul>
+			 </td>
+			<td>
+				<ul>
+					<li>Infrastruktur für Build erforderlich</li>
+					<li>Trennung erzeugt Komplexität</li>
+				</ul>
+			</td>
+		 </tr>
+</tbody>
+</table>
 				</section>
 			</section>
 			<section>
 				<section>
-					Networking
+					<h2>Networking</h2>
 				</section>
 				<section>
+					<h3>Legacy container links</h3>
+					Das Networking löst das Konzept der Link zwischen Containern ab!
+					<br />
+					<br />
+					     <pre>
+                            <code data-trim contenteditable>
+								$ docker run -d --name mongodb mongo
+								$ docker run -d --name apache link data:mongodb webapp
+                            </code>
+                        </pre>
+				</section>
+				<section>
+					<h3>Netzwerkarten (Driver)</h3>
+					<ul>
+						<li>null: kein Netzwerk</li>
+						<li>host: nur Verbindungen zwischen Containern und dem Host.</li>
+						<li>bright: Container wird Teil des physischen Netzwerk des Hosts. Er kann von außen erreicht werden.</li>
+						<li>overlay:</li>
+					</ul>
+				</section>
+				<section>
+					Nach der Docker-Installation stehen die folgenden Netzwerke zur Verfügung<br />
+					<ul>
+						<li>none (null)</li>
+						<li>host (host)</li>
+						<li>bridge (bridge)</li>
+					</ul>
+					<br />
+					<br />
+					Neue Container (außer Swarm / Compose) werden, soweit nicht anders definiert, dem Netzwerk bright zugeordnet.
+				</section>
+				<section>
+					<h3>Netzwerk anzeigen <a href="https://docs.docker.com/engine/reference/commandline/network_ls/" target="_target" class="infolink"></a></h3>
+				 	<pre><code class="docker">docker network ls [OPTIONS]</code></pre>
+				 	<br />
+					<h3>Netzwerkdetails anzeigen <a href="https://docs.docker.com/engine/reference/commandline/network_inspect/" target="_target" class="infolink"></a></h3>
+					<pre><code class="docker">docker network inspect [OPTIONS] NETWORK</code></pre>
+				</section>
+				<section>
+					<h3>Netzwerk erstellen</h3>
+					<pre><code class="docker">docker network create [OPTIONS] NETWORK</code></pre>
+<table>
+	 <tbody>
+		 <tr>
+			 <td style="width: 150px">-d/--drive</td>
+			 <td>Netzwerktreiber (none, host, bridge ...)</td>
+		 </tr>
+		 <tr>
+			 <td>--subnet</td>
+			 <td>Subnetz z.B. 192.168.235.0/24</td>
+		 </tr>
+		 <tr>
+			 <td>--ip-range</td>
+			 <td>Definiert den zu vergebenden IP Bereich</td>
+		 </tr>
+		 <tr>
+			 <td>-o/-opt </td>
+			 <td>Key / Value - Eintrag für spezielle Einstellung z.B. com.docker.network.driver.mtu": "1500"</td>
+		 </tr>
+		 <tr>
+			 <td>--label</td>
+			 <td>Metadaten für das Netzwerk</td>
+		 </tr>
+		 <tr>
+			 <td>--ipv6</td>
+			 <td>aktiviert / deaktiviert IPv6</td>
+		 </tr>
+</tbody>
+</table>
 				</section>
 			</section>
 			<section>

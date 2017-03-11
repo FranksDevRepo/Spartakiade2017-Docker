@@ -124,8 +124,9 @@
 					<ul>
 						<li>Laufende Instanz eines Image</li>
 						<li>nur zur Laufzeit existent</li>
+						<li>Schreibbare Schicht wird <br />oberhalb des Image bereitgestellt</li>
 					</ul>
-					TBD: Grafik
+					<img src="images/schema_container.svg" alt="schema docker" style="border:0;float:right">
 				 </section>
 				 <section>
 					<h3>Docker-Ökosystem</h3>
@@ -513,6 +514,14 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 <pre><code class="docker">CMD ["npm", "rum", "testapp"]</code></pre>	
 				</section>
 				<section>
+					Beispiel<br>
+					TBD
+					<pre><code class="docker">
+						
+						
+						</code></pre>	
+				</section>
+				<section>
 					<h3>Empfehlungen <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/" class="infolink" target="_blank"></a></h3>
 					
 					<ul>
@@ -532,6 +541,7 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 			<section>
 				<section>
 					<h2>Build .Net Core App</h2>
+					<img src="images/DockerDotNET.jpg" alt="Logo .net and docker"/ style="border: 0; height: 500px">
 				</section>
 				<section>
 					<h3>Build inside</h3>
@@ -599,24 +609,16 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 				</section>
 				<section>
 					<h3>Legacy container links</h3>
-					Das Networking löst das Konzept der Link zwischen Containern ab!
-					<br />
-					<br />
 					     <pre>
                             <code data-trim contenteditable>
 								$ docker run -d --name mongodb mongo
 								$ docker run -d --name apache link data:mongodb webapp
                             </code>
                         </pre>
-				</section>
-				<section>
-					<h3>Netzwerkarten (Driver)</h3>
-					<ul>
-						<li>null: kein Netzwerk</li>
-						<li>host: nur Verbindungen zwischen Containern und dem Host.</li>
-						<li>bright: Container wird Teil des physischen Netzwerk des Hosts. Er kann von außen erreicht werden.</li>
-						<li>overlay:</li>
-					</ul>
+						<p class="fragment">
+							<span style="color: red">VERALTET</span><br />
+							Das Networking löst das Konzept der Link zwischen Containern ab!
+						</p>
 				</section>
 				<section>
 					Nach der Docker-Installation stehen die folgenden Netzwerke zur Verfügung<br />
@@ -628,6 +630,15 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 					<br />
 					<br />
 					Neue Container (außer Swarm / Compose) werden, soweit nicht anders definiert, dem Netzwerk bright zugeordnet.
+				</section>
+					<section>
+					<h3>Netzwerkarten (Driver)</h3>
+					<ul>
+						<li>null: kein Netzwerk</li>
+						<li>host: nur Verbindungen zwischen Containern und dem Host.</li>
+						<li>bright: Container wird Teil des physischen Netzwerk des Hosts. Er kann von außen erreicht werden.</li>
+						<li>overlay:</li>
+					</ul>
 				</section>
 				<section>
 					<h3>Netzwerk anzeigen <a href="https://docs.docker.com/engine/reference/commandline/network_ls/" target="_target" class="infolink"></a></h3>
@@ -671,15 +682,58 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 			</section>
 			<section>
 				<section>
-					Docker-Compose
+					<h2>Docker-Compose</h2>
+					<img src="images/composelogo.png" style="width: 300px;border: 0"/>
+					<p class="fragment">Zusammenfassung mehrerer Container zu einem Anwendungsstack</p>
+				</section>
+				<section>
+					<h3>Compose-File</h3>
+					Eine yaml-Datei welche die Struktur und Konfiguration des Anwendungsstacks definiert.
+					<br />
+					Wichtig: es gibt zwei Versionen der Compose-Files. Ohne Angabe gibt Version 1!
+					<br /> 
+				</section>
+				<section>
+					Inhalt
+				</section>
+				<section>
+					Beispiel
+					TBD
+				</section>
+				<section>
+					COMMAND
 				</section>
 			</section>
 			<section>
 				<section>
-					Containerfertige .Net (Core) App
+					<h2>Containerfertige .Net (Core) App</h2>
+					<img src="images/DockerDotNET.jpg" alt="Logo .net and docker"/ style="border: 0; height: 500px">
 				</section>
 				<section>
-					<h3>Konfiguration / Einstellung</h3>
+					<h3>Konfiguration / Einstellungen</h3>
+					<ul>
+						<li>Einfache Implementierung in .NET Anwendung</li>
+						<li>Gute Integration in Docker-Ökosystem</li>
+						<li>Plattformabhängigkeit</li>
+						<li>Support von verschiedenen Umgebungen: Entwicklung, Test und Produktion</li>
+					<ul>
+						<br />
+			<table>
+	 <tbody>
+		 <tr>
+			 <th>Ungeeignet</th>
+			 <th>Alternativen</th>
+		 </tr>
+		 <tr>
+			 <td>Registry</td>
+			 <td>Zentrale Service-Discovery</td>
+		 </tr>
+		 <tr>
+			 <td>Config-Dateien</td>
+			 <td>Environment Variables</td>
+		 </tr>
+</tbody>
+</table>
 				</section>
 				<section>
 					Beispiel Logging-App
@@ -716,12 +770,62 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 			</section>
 			<section>
 				<section>
-					<h2>Docker Swarm Mode</h2>
+					<h2>Docker Swarm / Docker Swarm Mode</h2>
+					<img src="images/swarmlogo.jpg" style="width: 300px;border: 0"/>
+					<p class="fragment">Container-Cluster über mehrere Docker-Hosts</p>
+				</section>
+				<section>
+					Befehle Docker SWARM
+				</section>
+				<section>
+					Befehle Docker Node
+				</section>
+				<section>
+					Befehle Docker Service
+				</section>
+				<section>
+					<h3>Docker Swarm Visualizer</h3>
+					<p style="text-align: left">
+					Das Tool Docker Swarm Visualizer gestattet eine Übersicht der laufenden Services und Hosts.
+					<img src="images/visualizer.png" style="border: 0;height: 350px;float:right" >
+					<br />
+					<br />
+					Lizenz: Apache <a href="https://github.com/ManoMarks/docker-swarm-visualizer" target="_blank">GitHub</a>
+					<br />
+					<br />
+					Verfügbare Container:<br />
+					<ul>
+						<li>Linux x64:  <a href="https://hub.docker.com/r/manomarks/visualizer/" target="_blank">manomarks/visualizer</a></li>
+						<li>Linux arm:  <a href="https://hub.docker.com/r/alexellis2/visualizer-arm/" target="_blank">alexellis2/visualizer-arm</a></li>
+						<li>Windows:  <a href="https://hub.docker.com/r/stefanscherer/visualizer-windows/" target="_blank">stefanscherer/visualizer-windows</a></li>
+					</ul>
+					</p>
 				</section>
 			</section>
 			<section>
 				<section>
 					.Net Client API
+				</section>
+				<section>
+					Eine .NET Client API wird offiziell von Microsoft gepflegt.
+					<br />
+					Quellcode: <a href="https://github.com/Microsoft/Docker.DotNet" target="_blank">GitHub</a>
+					<br />
+					Package: <a href="https://www.nuget.org/packages/Docker.DotNet/" target="_blank">Nuget</a>
+					<br />
+					Hinweis: Die Pakete werden nicht syncron mit den Änderungen am Quellcode veröffentlicht. 
+					Bestimmte Funktionen z.B. die Unterstützung für Swarm steht nur als Quellcode bereit.
+				</section>
+				<section>
+					Verbindungsaufbau
+					- Windows
+					- Linux
+				</section>
+				<section>
+					Abfrage Container / Images
+				</section>
+				<section>
+					Container erstellen / löschen / starten / stoppen
 				</section>
 			</section>
 			<section>
@@ -734,6 +838,9 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 				https://blog.docker.com/media/Rancher-Logo-Final-1.png
 				http://design.ubuntu.com/wp-content/uploads/ubuntu-logo14.png
 				https://www.archlinux.org/static/logos/archlinux-logo-dark-1200dpi.b42bd35d5916.png
+				http://blog.d2-si.fr/2016/06/29/start-up-docker-swarm/
+				http://www.willhoeft-it.com/2016/06/03/docker-compose.html
+				https://blogs.msdn.microsoft.com/cesardelatorre/2016/11/16/free-ebook-on-containerized-docker-application-lifecycle-with-microsoft-tools-and-platform/
 			</section>
 
 

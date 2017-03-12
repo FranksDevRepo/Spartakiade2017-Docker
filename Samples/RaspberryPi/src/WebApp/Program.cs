@@ -2,7 +2,7 @@
 using System.Threading;
 using Nancy.Hosting.Self;
 
-namespace WebApp
+namespace FP.Spartakiade2017.Docker.RaspberryPi
 {
     class Program
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebApp.Modules
+namespace FP.Spartakiade2017.Docker.RaspberryPi.Modules
 {
     public class HomeModule : Nancy.NancyModule
     {

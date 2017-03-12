@@ -765,7 +765,82 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 			</section>
 			<section>
 				<section>
-					<h2>Github + Dockerhub</h2>
+					<h2>GitHub + Docker Hub</h2>
+				</section>
+				<section>
+				Die Verknüpfung von GitHub und Docker Hub gestattet eine automatische Erstellung der Container mit jeder Codeänderung.
+				<img src="images/githubdockerhub.svg" alt="schema flow github and dockerhub" style="border: 0"/>
+				Voraussetzungen:
+				<ul>
+					<li>Accounts bei GitHub und Docker Hub existieren</li>
+					<li>Quellcode inkl. Dockerfile ist in einem Repository auf GitHub vorhanden</li>
+				</ul>
+				</section>
+				<section>
+					<h3>Verbindung GitHub und Docker Hub</h3>
+					<ol start="1">
+						<li>Login bei Docker Hub</li>
+						<li>Profil -> Setting -> Linked Accounts & Services</li>
+					</ol>
+					<img src="images/gitdocker_01.png" style="height: 350px"/>
+				</section>
+				<section>
+					<ol start="3">
+						<li>Auswahl des Zugriff</li>
+					</ol>
+					<br />
+					<img src="images/gitdocker_02.png" style="height: 500px"/>
+				</section>
+				<section>
+					<ol start="4">
+						<li>Autorisierung des Zugriff</li>
+						<li>Bestätigung mit GitHub-Kennwort</li>
+					</ol>
+					<br />
+					<img src="images/gitdocker_03.png" style="height: 400px"/>
+					<img src="images/gitdocker_04.png" style="height: 250px"/>
+				</section>
+				<section>
+					<h3>Automatischer Build</h3>
+					<ol>
+						<li>Login bei Docker Hub</li>
+						<li>Create -> Create Automated Build</li>
+						<li>Auswahl Herkunft Quellcode (GitHub oder Bitbucket)</li>
+					</ol><br />
+					<img src="images/gitdocker_05.png" style="height: 400px"/>
+				</section>
+				<section>
+					<ol start="5">
+						<li>Auswahl des Quell-Repository</li>
+					</ol>
+					<img src="images/gitdocker_06.png" style="height: 250px"/>
+					
+				</section>
+				<section>
+					<ol start="6">
+						<li>Konfiguration Docker Hub-Repository
+						<ul>
+							<li>Namespace (Fix: Benutzer)</li>
+							<li>Name (Default: Name des GitHub-Repository)</li>
+							<li>Sichtbarkeit (Default: Öffentlich)</li>
+							<li>Kurzbeschreibung (Pflichtfeld)</li>
+						</ul>
+						</li>
+					</ol>
+					<br />
+					<img src="images/gitdocker_07.png" style="height: 400px"/>
+				</section>
+				<section>
+					<ol start="7">
+						<li>Anpassung Build-Einstellungen
+							<ul>
+								<li>Pfad zum Dockerfile</li>
+								<li>Definition Tags</li>
+								<li>Verwendete Git-Branches</li>
+							</ul>
+						</li>
+					</ol>
+					<img src="images/gitdocker_08.png" style="height: 400px"/>
 				</section>
 			</section>
 			<section>

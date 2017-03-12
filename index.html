@@ -514,16 +514,26 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 <pre><code class="docker">CMD ["npm", "rum", "testapp"]</code></pre>	
 				</section>
 				<section>
-					Beispiel<br>
-					TBD
-					<pre><code class="docker">
-						
-						
+					<h3>Beispiel</h3>
+					<pre><code class="docker">FROM fpommerening/spartakiade2017-rabbitmq:core-base
+LABEL maintainer "frank@pommerening-online.de"
+ENV REFRESHED_AT 2017-01-31
+ENV Picflow_VERSION 0.0.1
+
+COPY /app /home/
+
+RUN set -x \
+	&& p7zip -d /home/picflow-webapp.7z \
+	&& mv /picflow-webapp/ /app/ \
+	&& apt-get purge -y --auto-remove ca-certificates wget p7zip
+
+WORKDIR /app/
+EXPOSE 5000
+ENTRYPOINT ["dotnet", "WebApp.dll"]
 						</code></pre>	
 				</section>
 				<section>
 					<h3>Empfehlungen <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/" class="infolink" target="_blank"></a></h3>
-					
 					<ul>
 						<li>Installiere nur notwendige Pakete</li>
 						<li>Jeder Container hat nur einen Zweck</li>
@@ -832,7 +842,7 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 				</section>
 				<section>
 					<ol start="7">
-						<li>Anpassung Build-Einstellungen
+						<li>Anpassung Build-Einstellungen (Build-Settings)
 							<ul>
 								<li>Pfad zum Dockerfile</li>
 								<li>Definition Tags</li>
@@ -841,6 +851,12 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 						</li>
 					</ol>
 					<img src="images/gitdocker_08.png" style="height: 400px"/>
+				</section>
+				<section>
+					<ol start="8">
+						<li>Prüfung Build (Build Details)</li>
+					</ol>
+					<img src="images/gitdocker_09.png" style="height: 400px"/>
 				</section>
 			</section>
 			<section>
@@ -879,7 +895,7 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 			</section>
 			<section>
 				<section>
-					.Net Client API
+					<h2>.Net Client API</h2>
 				</section>
 				<section>
 					Eine .NET Client API wird offiziell von Microsoft gepflegt.
@@ -902,12 +918,30 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 				<section>
 					Container erstellen / löschen / starten / stoppen
 				</section>
+				<section>
+					Beispiel: Webhock für automatische Bereitstellung
+
+				</section>
+				<section>
+					<h3>Konfiguration des Webhock</h3>
+					<img src="images/webhock_01.png" style="height: 350px; float: right">
+					<ol>
+						<li>Login beim Docker Hub</li>
+						<li>Auswahl des Repository</li>
+						<li>Webhooks -> Create a Webhock</li>
+						<li>Name und Ziel-URL festlegen</li>
+						<li>Speichern</li>
+					</ol>
+					<img src="images/webhock_02.png" style="height: 150px; float: left">
+				</section>
 			</section>
+			<!--
 			<section>
 				<section>
 					<h2>CI / DC mit Gitlab</h2>
 				</section>
 			</section>
+			-->
 			<section>
 				<h3>Quellen:</h3>
 				https://blog.docker.com/media/Rancher-Logo-Final-1.png

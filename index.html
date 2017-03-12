@@ -647,7 +647,7 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 						<li>null: kein Netzwerk</li>
 						<li>host: nur Verbindungen zwischen Containern und dem Host.</li>
 						<li>bright: Container wird Teil des physischen Netzwerk des Hosts. Er kann von außen erreicht werden.</li>
-						<li>overlay:</li>
+						<li>overlay: Hostüberspannendes Netzwerk z.B. für Swarm</li>
 					</ul>
 				</section>
 				<section>
@@ -698,20 +698,150 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 				</section>
 				<section>
 					<h3>Compose-File</h3>
-					Eine yaml-Datei welche die Struktur und Konfiguration des Anwendungsstacks definiert.
+					Eine yaml bzw. yml - Datei welche die Struktur und Konfiguration des Anwendungsstacks definiert. Standard: docker-compose.yml
 					<br />
-					Wichtig: es gibt zwei Versionen der Compose-Files. Ohne Angabe gibt Version 1!
+					
+					Versionen / Formate: Ohne Angabe im Header gilt Version 1!
+					 <a href="https://docs.docker.com/compose/compose-file/compose-versioning/" target="_blank" class="infolink"></a>
 					<br /> 
+<table>
+	 <tbody>
+		 <tr>
+			 <th >Format / Version</th>
+			 <th >Docker-Version</th>
+			 <th>Hinweise</th>
+		 </tr>
+		 <tr>
+			 <td>3.0; 3.1</td>
+			 <td>1.13.0+</td>
+			 <td>Empfohlene Version (Erlaubt Verknüpfung mit Docker Swarm Mode)</td>
+		 </tr>
+		 <tr>
+			 <td>2.1</td>
+			 <td>1.12.0+</td>
+			 <td></td>
+		 </tr>
+		 <tr>
+			 <td>2.0</td>
+			 <td>1.10.0+</td>
+			 <td></td>
+		 </tr>
+		 <tr>
+			 <td>1.0</td>
+			 <td>1.9.1+</td>
+			 <td>zukünftigen Version deprecated / veraltet</td>
+		 </tr>
+</tbody>
+</table>
 				</section>
 				<section>
-					Inhalt
+<h3>Service-Defintion</h3>
+Jeder Container des Anwendungsstacks ist ein Service. Deren Eigenschaften wie Name, Abhängigkeiten etc. werden im Bereich services beschrieben.
+<br />
+
+					<p style="text-align: left">
+						<b>Herkunft Images</b><br/>
+						BUILD 
+						<br />
+						&nbsp;&nbsp;Image wird erst während des Starts erstellt.
+					</p>
+					<pre><code class="yaml">build:
+	context: ./webapp
+	dockerfile: Dockerfile.local
+	image: webbapp:latest</code></pre>
+					<p style="text-align: left">
+						Vorhandenes Image
+						<br />
+						&nbsp;&nbsp;gleiches Format wie beim FROM-Klausel des Dockerfile
+					</p>
+					<pre><code class="yaml">image: user/web:latest</code></pre>
 				</section>
 				<section>
-					Beispiel
-					TBD
+					<p style="text-align: left">
+						Portfreigaben
+						<br />
+						&nbsp;&nbsp; Port-Container:Port-Host
+					</p>
+					<pre><code class="yaml">ports:
+	- 5000:5000</code></pre>
+				<p style="text-align: left">Hostname</p>
+					<pre><code class="yaml">hostname:Webserver1</code></pre>
+				<p style="text-align: left">Abhängigkeiten
+					<br />
+					&nbsp;&nbsp;Es werden die (Alias)name der Services verwendet.
+					<pre><code class="yaml">depends_on:
+	- dbserver</code></pre>
 				</section>
 				<section>
-					COMMAND
+				<p style="text-align: left">Umgebungsvariable / Einstellungen
+					<br />
+					&nbsp;&nbsp;Format: KEY:VALUE</p>
+					<pre><code class="yaml">environment:
+	- setting1:value1
+	- setting2:value2</code></pre>
+				<p style="text-align: left">Datenspeicher
+					<br />
+					&nbsp;&nbsp;Datenspeicher werden zusätzlich im Bereich volumes definiert.</p>
+					<pre><code class="yaml">volumes:
+	- data1:/app/data</code></pre>
+	<p style="text-align: left">Netzwerkzuordnung
+					<br />
+					&nbsp;&nbsp;Netzwerke werden zusätzlich im Bereich Netzworks definiert.</p>
+					<pre><code class="yaml">networks:
+	- frontend</code></pre>
+				</section>
+				<section>
+					<h3>Netzwerk-Definition <a href="https://docs.docker.com/compose/networking/" target="_blank" class="infolink"></a></h3>
+					Die Definition der Netzwerke erfolgt innerhalb des Bereichs networks.
+					<br/>
+					<p style="text-align: left">Treiber
+					<br />
+					&nbsp;&nbsp;z.B. bridge oder overlay</p>
+					<pre><code class="yaml">driver: overlay</code></pre>
+					<p style="text-align: left">Optionen
+					<pre><code class="yaml">driver_opts:
+- opt1: "val1"</code></pre>
+				</section>
+				<section>
+					<h3>Datenspeicher-Definition</h3>
+					Die Definition der Datenspeicher erfolgt innerhalb des Bereichs volumes. Es orientiert sich an der Volume-Defintion <a href="https://docs.docker.com/engine/reference/commandline/volume_create/" target="_blank" class="infolink"></a>.
+					<br/>
+					<p style="text-align: left">Treiber
+					<br />
+					&nbsp;&nbsp;i.d.R. Local</p>
+					<pre><code class="yaml">driver: overlay</code></pre>
+					<p style="text-align: left">Optionen
+					<pre><code class="yaml">driver_opts:
+- opt1: "val1"</code></pre>
+				</section>
+				<section>
+					<h4>Beispiel</h4>
+					<pre ><code class="yaml">version: "3"
+services:
+    database:
+        image: mongodb:3.2
+        volumes:
+            - data:/var/mongo/data
+        networks:
+            - backend
+    webapp:
+        build:
+            context: ./webapp
+        ports: 5000:80
+        environment:
+            - DbConnectingString=mongodb://database
+        networks:
+            - backend
+            - frontend
+networks:
+    backend:
+    frontend:
+volumes:
+    data:</code></pre>
+				</section>
+				<section>
+					<h3>Anwendungsstack-Operationen</h3>
+					<pre><code class="docker">docker-compose [SUBCOMMAND] [OPTIONS] </code></pre>
 				</section>
 			</section>
 			<section>
@@ -950,6 +1080,8 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 				http://blog.d2-si.fr/2016/06/29/start-up-docker-swarm/
 				http://www.willhoeft-it.com/2016/06/03/docker-compose.html
 				https://blogs.msdn.microsoft.com/cesardelatorre/2016/11/16/free-ebook-on-containerized-docker-application-lifecycle-with-microsoft-tools-and-platform/
+				https://www.docker.com/sites/default/files/oyster-registry-3.png
+				http://blog.terranillius.com/post/composev3_swarm/
 			</section>
 
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace ClientApi
+namespace FP.Spartakiade2017.Docker.ClientApi
 {
     public class EnvironmentVariable
     {

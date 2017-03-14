@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Docker.DotNet;
 using Docker.DotNet.Models;
 
-namespace ClientApi
+namespace FP.Spartakiade2017.Docker.ClientApi
 {
     public class Program
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FP.Spartakiade2017.Docker.WebHock.Service.Modules
+namespace FP.Spartakiade2017.Docker.WebHook.Service.Modules
 {
     public class HomeModule : Nancy.NancyModule
     {

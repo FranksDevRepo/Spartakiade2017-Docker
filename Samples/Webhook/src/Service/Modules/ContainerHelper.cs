@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using Docker.DotNet;
 using Docker.DotNet.Models;
 
-namespace FP.Spartakiade2017.Docker.WebHock.Service.Modules
+namespace FP.Spartakiade2017.Docker.WebHook.Service.Modules
 {
     public class ContainerHelper : IDisposable
     {

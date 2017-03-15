@@ -1,9 +1,7 @@
 ﻿using System.IO;
-using FP.Spartakiade2017.Docker.WebHock.Service.Model;
 using Microsoft.AspNetCore.Hosting;
-using Newtonsoft.Json;
 
-namespace FP.Spartakiade2017.Docker.WebHock.Service
+namespace FP.Spartakiade2017.Docker.WebHook.Service
 {
     public class Program
     {

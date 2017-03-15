@@ -99,7 +99,7 @@
 							<li class="fragment">Microservices</li>
 							<li class="fragment">DevOps</li>
 							<li class="fragment">CI / CD (Continuous Integration / Continuous Deployment)</li>
-							<li class="fragment">Xaas (Anything as a Service)</li>
+							<li class="fragment">XaaS (Anything as a Service)</li>
 							<li class="fragment">Portablität</li>
 						</ul>
 				 </section>
@@ -116,7 +116,7 @@
 							<li>Template für Container</li>
 							<li>Snapshot / Archiv</li>
 							<li>Readonly und versioniert </li>
-							<li>Ebenenprizip (Speicherung nur Differenzen)</li>
+							<li>Ebenenprinzip (Speicherung nur Differenzen)</li>
 						</ul>
 				 </section>
 				 <section>
@@ -160,7 +160,7 @@
 							</tr>
 							<tr>
 								<td>Kinematic</td>
-								<td>Grafikes Verwaltungswerkzeug</td>
+								<td>Grafisches Verwaltungswerkzeug</td>
 							</tr>
 						</tbody>
 					</table>
@@ -194,7 +194,7 @@
 					</span>
 				</section>
 				<section>
-					Heute Bestandteil viele Standard-Distributionen
+					Heute Bestandteil vieler Standard-Distributionen
 					<img src="images/ubuntulogo.png" style="border: 0px;float:right;height: 100px"/>
 					<img src="images/archlinuxlogo.svg" style="border: 0px; float:left;height: 100px; margin-top: 50px"/>
 					<ul>
@@ -218,7 +218,7 @@
 			</section>
 			<section>
 				<section>
-					<h2>Windows Containter</h2>
+					<h2>Windows Container</h2>
 				</section>
 				<section>
 					<ul>
@@ -226,7 +226,7 @@
 						<li>Container-Technik enthalten in
 							<ul>
 								<li>Windows Server 2016</li>
-								<li>Windows 10 Professsional / Enterprise (ab Anniversary Update)</li>
+								<li>Windows 10 Professional / Enterprise (ab Anniversary Update)</li>
 							</ul>
 						</li>
 						<li>Unterstützung des kompletten Ökosystems (Hub / Compose / Swarm)</li>
@@ -237,7 +237,7 @@
 				</section>
 				<section>
 					<h3>Isolation</h3>
-					Windows Container vs Hyper-V Container<br />
+					Windows Container vs. Hyper-V Container<br />
 					<img src="images/schema_win_docker.svg" alt="schema virtual maschine" style="border:0;">
 					<img src="images/schema_hyperv_docker.svg" alt="schema docker" style="border:0;">
 				</section>
@@ -283,11 +283,11 @@
 	 <tbody>
 		 <tr>
 			 <td>-a / --all</th>
-			 <td>zeigt Informationen zu alle, auch inaktive, Container</td>
+			 <td>zeigt Informationen zu allen, auch inaktiven, Containern</td>
 		 </tr>
 		 <tr>
 			 <td>-l / --latest</th>
-			 <td>zeigt Informationen zum letzten erstellen Contrainer</td>
+			 <td>zeigt Informationen zum letzten erstellten Container</td>
 		 </tr>
 </tbody>
 </table>				
@@ -374,14 +374,14 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 					<pre><code class="docker">docker logs [OPTIONS] CONTAINER</code></pre>
 				</section>
 				<section>
-					<h3>Image-Opterationen </h3>
+					<h3>Image-Operationen </h3>
 					<h4>Anzeige<a href="https://docs.docker.com/engine/reference/commandline/images/" class="infolink" target="_blank" ></a></h4>
 					<pre><code class="docker">docker images [OPTIONS]</code></pre>
 <table>
 	 <tbody>
 		 <tr>
 			 <td>-a / --all</td>
-			 <td>Zeigt alle, auch Zwischencontrainer, an</td>
+			 <td>Zeigt alle, auch Zwischencontainer, an</td>
 		 </tr>
 		 <tr>
 			 <td>-f / --filter</th>
@@ -392,7 +392,7 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 					<br />
 					<h4>Herunterladen / Aktualisieren<a href="https://docs.docker.com/engine/reference/commandline/pull/" class="infolink" target="_blank" ></a></h4>
 					<pre><code class="docker">docker pull [OPTIONS] [Registry]IMAGENAME</code></pre>
-					Ist keine Registry angegeben wird der Default i.d.R. Docker-Hub verwendet.
+					Ist keine Registry angegeben, wird der Default i.d.R. Docker-Hub verwendet.
 					Beim Aktualisieren bleibt das vorhandene Image erhalten.
 					<pre><code class="docker">docker pull  myregistry.local:5000/myuser/myimage</code></pre>
 					<br />
@@ -404,12 +404,12 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 	 <tbody>
 		 <tr>
 			 <td>-f / --force</td>
-			 <td>Erzingt das Löschen</td>
+			 <td>Erzwingt das Löschen</td>
 		 </tr>
 </tbody>
 </table>			
 					<h4>Erstellung aus Container <a href="https://docs.docker.com/engine/reference/commandline/commit/" class="infolink" target="_blank" ></a></h4>
-					<pre><code class="docker">docker commit [OPTIONS] CONTRAINER [REPOSITORY[:TAG]]</code></pre>
+					<pre><code class="docker">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</code></pre>
 <table>
 	 <tbody>
 		 <tr>
@@ -423,7 +423,7 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 </tbody>
 </table><br/>
 <h4>Übertragung zur Registry <a href="https://docs.docker.com/engine/reference/commandline/push/" class="infolink" target="_blank" ></a></h4>
-					<pre><code class="docker">docker push [OPTIONS] [Registry]IMAGENAME[:tag] </code></pre>
+					<pre><code class="docker">docker push [OPTIONS] [Registry]IMAGENAME[:TAG] </code></pre>
 					Vor der Übertragung in den Dockerhub ist eine Authentifizierung erforderlich.
 				</section>
 			</section>
@@ -437,9 +437,9 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 				</section>
 				<section>
 					<p style="text-align: left">
-						FROM <i>Basisimage[:Tag]</i>
+						FROM <i>Basisimage[:TAG]</i>
 						<br />
-						&nbsp;&nbsp; Imagename ggf. mit Tag an welchem das eigene Image basieren soll
+						&nbsp;&nbsp; Imagename ggf. mit Tag auf welchem das eigene Image basieren soll
 					</p>
 <pre><code class="docker">FROM ubuntu:16.10</code></pre>
 					<p style="text-align: left">
@@ -448,7 +448,7 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 						&nbsp;&nbsp; E-Mail-Adresse des Autors
 					</p>
 <pre><code class="docker">LABEL maintainer "max@mustermann.de"</code></pre>
-<p style="text-align: left">&nbsp;&nbsp;Veraltet: MAINTAINER</p>
+<p style="text-align: left">&nbsp;&nbsp; Veraltet: MAINTAINER</p>
 <pre><code class="docker">MAINTAINER Max Mustermann "max@mustermann.de"</code></pre>
 					<p style="text-align: left">
 						RUN <i>COMMAND </i>
@@ -461,19 +461,19 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 					<p style="text-align: left">
 						ENV <i>VARIABLENNAME Wert</i>
 						<br />
-						&nbsp;&nbsp; Definiert Variablen z.B. die Version oder das Datum der Aktualisierung die auch innerhalb der Befehle verwendet werden kann.
+						&nbsp;&nbsp; Definiert Variablen z.B. die Version oder das Datum der Aktualisierung, die auch innerhalb der Befehle verwendet werden können.
 					</p>
 <pre><code class="docker">ENV REFRESHED_AT 2017-01-25</code></pre>
 <p style="text-align: left">
 						EXPOSE <i>Portnummer</i>
 						<br />
-						&nbsp;&nbsp; Definiert Ports welche durch das Image bereitgestellt werden.
+						&nbsp;&nbsp; Definiert Ports, welche durch das Image bereitgestellt werden.
 					</p>
 <pre><code class="docker">EXPOSE 8080</code></pre>
 <p style="text-align: left">
 						VOLUME <i>Pfad</i>
 						<br />
-						&nbsp;&nbsp; Definiert Volume (Verzeichnung) welche durch das Image bereitgestellt wird.
+						&nbsp;&nbsp; Definiert Volume (Verzeichnis), welche durch das Image bereitgestellt wird.
 					</p>
 <pre><code class="docker">VOLUME ["/mydata"]</code></pre>
 				</section>
@@ -488,13 +488,13 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 						ADD  <i>Quellpfad / URL</i> <i>Zielpfad</i>
 						<br />
 						&nbsp;&nbsp; Kopiert Ordner / Dateien in das Image.<br/>
-						&nbsp;&nbsp;Kann auch eine URL oder eine tar-Datei sein.
+						&nbsp;&nbsp; Kann auch eine URL oder eine tar-Datei sein.
 					</p>
 <pre><code class="docker">COPY /Publish /MyApp</i></code></pre>				
 <p style="text-align: left">
 						WORKDIR <i>Pfad</i>
 						<br />
-						&nbsp;&nbsp; Definiert den Pfad in welchem der Container die Ausführung durchführt.
+						&nbsp;&nbsp; Definiert den Einstiegspfad für die Ausführung innerhalb des Containers.
 					</p>
 <pre><code class="docker">WORKDIR /MyApp</code></pre>	
 				</section>
@@ -502,14 +502,14 @@ Die Angabe des Containers erfolgt per Name oder Hash.
 					<p style="text-align: left">
 						ENTRYPOINT <i>[COMMAND, ARGS]</i>
 						<br />
-						&nbsp;&nbsp; Definiert den Startbefehl des Image inkl. Parameter.
+						&nbsp;&nbsp; Definiert den Startbefehl des Images inkl. Parameter.
 					</p>
 <pre><code class="docker">ENTRYPOINT ["npm", "rum", "testapp"]</code></pre>	
 <p style="text-align: left">
 						CMD <i>COMMAND</i>
 						<br />
-						&nbsp;&nbsp; Definiert den Startbefehl des Image inkl. Parameter. <br/>
-						&nbsp;&nbsp;Ein Überschreiben ist möglich.
+						&nbsp;&nbsp; Definiert den Startbefehl des Images inkl. Parameter. <br/>
+						&nbsp;&nbsp; Ein Überschreiben ist möglich.
 					</p>
 <pre><code class="docker">CMD ["npm", "rum", "testapp"]</code></pre>	
 				</section>
@@ -555,7 +555,7 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 				</section>
 				<section>
 					<h3>Build inside</h3>
-					Die Anwendung wird im Contrainer während der Imageerstellung gebaut.
+					Die Anwendung wird im Container während der Imageerstellung gebaut.
 					<br />
 					<br />
 <table>
@@ -585,7 +585,7 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 				</section>
 				<section>
 					<h3>Build outside</h3>
-					Die Anwendung unabhängig vom Container erstellt. Die entstandenen Artefakte werden bei der Imageerstellung kopiert.
+					Die Anwendung wird unabhängig vom Container erstellt. Die entstandenen Artefakte werden bei der Imageerstellung kopiert.
 					<br />
 					<br />
 			<table>
@@ -627,7 +627,7 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
                         </pre>
 						<p class="fragment">
 							<span style="color: red">VERALTET</span><br />
-							Das Networking löst das Konzept der Link zwischen Containern ab!
+							Das Networking löst das Konzept der Links zwischen Containern ab!
 						</p>
 				</section>
 				<section>
@@ -639,14 +639,14 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 					</ul>
 					<br />
 					<br />
-					Neue Container (außer Swarm / Compose) werden, soweit nicht anders definiert, dem Netzwerk bright zugeordnet.
+					Neue Container (außer Swarm / Compose) werden, soweit nicht anders definiert, dem Netzwerk bridge zugeordnet.
 				</section>
 					<section>
-					<h3>Netzwerkarten (Driver)</h3>
+					<h3>Netzwerktreiber (Driver)</h3>
 					<ul>
 						<li>null: kein Netzwerk</li>
 						<li>host: nur Verbindungen zwischen Containern und dem Host.</li>
-						<li>bright: Container wird Teil des physischen Netzwerk des Hosts. Er kann von außen erreicht werden.</li>
+						<li>bright: Container wird Teil des physischen Netzwerks des Hosts. Er kann von außen erreicht werden.</li>
 						<li>overlay: Hostüberspannendes Netzwerk z.B. für Swarm</li>
 					</ul>
 				</section>
@@ -698,7 +698,7 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 				</section>
 				<section>
 					<h3>Compose-File</h3>
-					Eine yaml bzw. yml - Datei welche die Struktur und Konfiguration des Anwendungsstacks definiert. Standard: docker-compose.yml
+					Eine yaml bzw. yml - Datei, welche die Struktur und Konfiguration des Anwendungsstacks definiert. Standard: docker-compose.yml
 					<br />
 					
 					Versionen / Formate: Ohne Angabe im Header gilt Version 1!
@@ -729,13 +729,13 @@ ENTRYPOINT ["dotnet", "WebApp.dll"]
 		 <tr>
 			 <td>1.0</td>
 			 <td>1.9.1+</td>
-			 <td>zukünftigen Version deprecated / veraltet</td>
+			 <td>in zukünftiger Version deprecated / veraltet</td>
 		 </tr>
 </tbody>
 </table>
 				</section>
 				<section>
-<h3>Service-Defintion</h3>
+<h3>Service-Definition</h3>
 Jeder Container des Anwendungsstacks ist ein Service. Deren Eigenschaften wie Name, Abhängigkeiten etc. werden im Bereich services beschrieben.
 <br />
 
@@ -786,7 +786,7 @@ Jeder Container des Anwendungsstacks ist ein Service. Deren Eigenschaften wie Na
 	- data1:/app/data</code></pre>
 	<p style="text-align: left">Netzwerkzuordnung
 					<br />
-					&nbsp;&nbsp;Netzwerke werden zusätzlich im Bereich Netzworks definiert.</p>
+					&nbsp;&nbsp;Netzwerke werden zusätzlich im Bereich networks definiert.</p>
 					<pre><code class="yaml">networks:
 	- frontend</code></pre>
 				</section>
@@ -804,7 +804,7 @@ Jeder Container des Anwendungsstacks ist ein Service. Deren Eigenschaften wie Na
 				</section>
 				<section>
 					<h3>Datenspeicher-Definition</h3>
-					Die Definition der Datenspeicher erfolgt innerhalb des Bereichs volumes. Es orientiert sich an der Volume-Defintion <a href="https://docs.docker.com/engine/reference/commandline/volume_create/" target="_blank" class="infolink"></a>.
+					Die Definition der Datenspeicher erfolgt innerhalb des Bereichs volumes. Sie orientiert sich an der Volume-Defintion <a href="https://docs.docker.com/engine/reference/commandline/volume_create/" target="_blank" class="infolink"></a>.
 					<br/>
 					<p style="text-align: left">Treiber
 					<br />
@@ -926,14 +926,14 @@ volumes:
 				</section>
 				<section>
 					<ol start="3">
-						<li>Auswahl des Zugriff</li>
+						<li>Auswahl des Zugriffs</li>
 					</ol>
 					<br />
 					<img src="images/gitdocker_02.png" style="height: 500px"/>
 				</section>
 				<section>
 					<ol start="4">
-						<li>Autorisierung des Zugriff</li>
+						<li>Autorisierung des Zugriffs</li>
 						<li>Bestätigung mit GitHub-Kennwort</li>
 					</ol>
 					<br />
@@ -950,14 +950,14 @@ volumes:
 					<img src="images/gitdocker_05.png" style="height: 400px"/>
 				</section>
 				<section>
-					<ol start="5">
+					<ol start="4">
 						<li>Auswahl des Quell-Repository</li>
 					</ol>
 					<img src="images/gitdocker_06.png" style="height: 250px"/>
 					
 				</section>
 				<section>
-					<ol start="6">
+					<ol start="5">
 						<li>Konfiguration Docker Hub-Repository
 						<ul>
 							<li>Namespace (Fix: Benutzer)</li>
@@ -971,7 +971,7 @@ volumes:
 					<img src="images/gitdocker_07.png" style="height: 400px"/>
 				</section>
 				<section>
-					<ol start="7">
+					<ol start="6">
 						<li>Anpassung Build-Einstellungen (Build-Settings)
 							<ul>
 								<li>Pfad zum Dockerfile</li>
@@ -983,7 +983,7 @@ volumes:
 					<img src="images/gitdocker_08.png" style="height: 400px"/>
 				</section>
 				<section>
-					<ol start="8">
+					<ol start="7">
 						<li>Prüfung Build (Build Details)</li>
 					</ol>
 					<img src="images/gitdocker_09.png" style="height: 400px"/>
@@ -1035,7 +1035,7 @@ volumes:
 					<br />
 					Package: <a href="https://www.nuget.org/packages/Docker.DotNet/" target="_blank">Nuget</a>
 					<br />
-					Hinweis: Die Pakete werden nicht syncron mit den Änderungen am Quellcode veröffentlicht. 
+					Hinweis: Die Pakete werden nicht synchron mit den Änderungen am Quellcode veröffentlicht. 
 					Bestimmte Funktionen z.B. die Unterstützung für Swarm steht nur als Quellcode bereit.
 				</section>
 				<section>
@@ -1050,16 +1050,16 @@ volumes:
 					Container erstellen / löschen / starten / stoppen
 				</section>
 				<section>
-					Beispiel: Webhock für automatische Bereitstellung
+					Beispiel: Webhook für automatische Bereitstellung
 
 				</section>
 				<section>
-					<h3>Konfiguration des Webhock</h3>
+					<h3>Konfiguration des Webhook</h3>
 					<img src="images/webhock_01.png" style="height: 350px; float: right">
 					<ol>
 						<li>Login beim Docker Hub</li>
 						<li>Auswahl des Repository</li>
-						<li>Webhooks -> Create a Webhock</li>
+						<li>Webhooks -> Create a Webhook</li>
 						<li>Name und Ziel-URL festlegen</li>
 						<li>Speichern</li>
 					</ol>

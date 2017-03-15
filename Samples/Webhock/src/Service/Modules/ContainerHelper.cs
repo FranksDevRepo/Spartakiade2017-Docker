@@ -12,7 +12,7 @@ namespace FP.Spartakiade2017.Docker.WebHock.Service.Modules
 {
     public class ContainerHelper : IDisposable
     {
-        private DockerClient _client;
+        private readonly DockerClient _client;
 
         public ContainerHelper(string endpointUrl)
         {
@@ -45,7 +45,7 @@ namespace FP.Spartakiade2017.Docker.WebHock.Service.Modules
             return _client.Containers.RemoveContainerAsync(containerId, new ContainerRemoveParameters());
         }
 
-        public async Task<string> StartContainer(string containerName, string owner, string name, string tag)
+        public async Task<string> StartContainer(string containerName, string owner, string name, string tag, string portMap)
         {
             var createParam = new CreateContainerParameters();
             if (string.IsNullOrEmpty(owner))
@@ -56,19 +56,40 @@ namespace FP.Spartakiade2017.Docker.WebHock.Service.Modules
             {
                 createParam.Image = $"{owner}/{name}:{tag}";
             }
-            createParam.Name = name;
-            createParam.ExposedPorts = new Dictionary<string, object>();
+            createParam.Name = containerName;
+
+            if (!string.IsNullOrEmpty(portMap))
+            {
+                var containerPort = portMap.Split('#').First();
+                var hostPort = portMap.Split('#').Last();
+
+
+                createParam.ExposedPorts = new Dictionary<string, object>
+                {
+                    {
+                        containerPort, new { HostPort = hostPort }
+                    }
+                };
+
+                createParam.HostConfig = new HostConfig
+                {
+                    PortBindings = new Dictionary<string, IList<PortBinding>>
+                    {
+                        {
+                            containerPort, new List<PortBinding>{ new PortBinding { HostPort = hostPort } }
+                        }
+                    }
+                };
+            }
 
             var result = await _client.Containers.CreateContainerAsync(createParam);
-            if (result.Warnings.Any())
+            if (result.Warnings != null && result.Warnings.Any())
             {
                 throw new Exception($"Warning by creating container {containerName} {string.Join("\n", result.Warnings)}");
             }
-            else
-            {
-                await _client.Containers.StartContainerAsync(result.ID, null);
-                return result.ID;
-            }
+
+            await _client.Containers.StartContainerAsync(result.ID, null);
+            return result.ID;
         }
 
         public async Task<string> GetContainerIdByName(string name)

@@ -890,17 +890,38 @@ volumes:
 					<h2>Docker auf Raspberry PI 3</h2>
 				</section>
 				<section>
-					Installation
+					<h3>Installation</h3>
+					<h4>Hypriot OS <a href="https://blog.hypriot.com/" target="_blank" class="infolink"></a></h4>
+					Hypriot OS ist eine spezielle Distribution für Docker auf ARM-Geräte. Sie war bereits vor dem offiziellen Support durch Docker verfügbar.
+					<br />
+					<h4>Raspbian Jessie Lite <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" class="infolink"></a></h4>
+					Docker unterstützt nun die ARM-Plattform offiziell. Es kann deshalb auf der Distribution Raspbian der Raspberry Foundation installiert werden.
+					<pre><code class="bash">curl -sSL get.docker.com | sh
+sudo usermod -aG docker pi
+sudo systemctl enable docker
+sudo systemctl start docker</code></pre>
 				</section>
 				<section>
-					Build .net App
+					<h3>Build .net App</h3>
+					Die Unterstützung der ARM-Plattform für .net core ist noch in Entwicklung.
+					Deshalb sollte man aktuell auf Mono von Xamarin / Microsoft zurückgreifen.
+					<br />
+					<br />
+					Images die auf x86/x64 erstellt wurden, sind auf dem Raspberry nicht lauffähig!
+					<br />
+					<br />
+					Verwendung spezieller Basisimages erforderlich<br />
+					<ul>
+						<li>resin/rpi-raspbian</li>
+						<li>resin/raspberrypi3-debian</li>
+						<li>yyolk/rpi-archlinuxarm</li>
+						<li>ioft/armhf-ubuntu</li>
+					</ul>
 				</section>
 			</section>
 			<section>
 				<section>
 					<h2>CI / DC mit TFS / Visual Studio Team Services</h2>
-				</section>
-				<section>
 				</section>
 			</section>
 			<section>

@@ -840,10 +840,79 @@ volumes:
     data:</code></pre>
 				</section>
 				<section>
-					<h3>Anwendungsstack-Operationen</h3>
+					<h3>Anwendungsstack-Operationen <a href="https://docs.docker.com/compose/reference/" target="_blank" class="infolink"></a></h3>
 					<pre><code class="docker">docker-compose [SUBCOMMAND] [OPTIONS] </code></pre>
+					<br />
+<table>
+	 <tbody>
+		 <tr>
+			 <th>Subbefehl</th>
+			 <th >Optionen</th>
+			 <th>Hinweise</th>
+		 </tr>
+		 <tr>
+			 <td>pull</td>
+			 <td></td>
+			 <td>Lädt die im Anwendungsstack enthalten Images herunter</td>
+		 </tr>
+		 <tr>
+			 <td>create</td>
+			 <td>--no-cache [SERVICE...]</td>
+			 <td>Erstellt das Image bzw. den alle Images des Stack</td>
+		 </tr>
+		 <tr>
+			 <td>up</td>
+			 <td>-d [SERVICE] <br />--build</td>
+			 <td>Erstellt / Lädt herunter / Startet einen Service inkl. Abhängigkeiten oder den gesamten Stack</td>
+		 </tr>
+		 <tr>
+			 <td>start</td>
+			 <td>[SERVICE]</td>
+			 <td>Startet einen Service</td>
+		 </tr>
+</tbody>
+</table>		
+
+				</section>
+				<section>
+					<table>
+	 <tbody>
+		 <tr>
+			 <th>Subbefehl</th>
+			 <th >Optionen</th>
+			 <th>Hinweise</th>
+		 </tr>
+		 <tr>
+			 <td>stop </td>
+			 <td>-t (timeout in s) [SERVICE]</td>
+			 <td>Beendet einen Service</td>
+		 </tr>
+		 <tr>
+			 <td>down</td>
+			 <td>--rmi /  -v</td>
+			 <td>Stoppt und entfernt Container, Netzwerke, images und Volumes</td>
+		 </tr>
+		 <tr>
+			 <td>rm</td>
+			 <td>-v</td>
+			 <td>Entfernt, nach Bestätigung, gestoppte Container und ggf. Volumes</td>
+		 </tr>
+		 <tr>
+			 <td>exec</td>
+			 <td>SERVICE COMMAND</td>
+			 <td>Führt den übergeben Befehl im Service aus</td>
+		 </tr>
+		  <tr>
+			 <td>top</td>
+			 <td>[SERVICE]</td>
+			 <td>Zeigt die Prozesse des Service bzw. des Anwendungsstack an</td>
+		 </tr>
+</tbody>
+</table>	
 				</section>
 			</section>
+
+
 			<section>
 				<section>
 					<h2>Containerfertige .Net (Core) App</h2>
@@ -876,13 +945,33 @@ volumes:
 </table>
 				</section>
 				<section>
-					Beispiel Logging-App
+					<h3>Logging <span class="fragment"> JA</span> </h3>
+					<br />
+					<span class="fragment">Datei</span> <span class="fragment"> NEIN</span><br />
+					<span class="fragment">Console</span> <span class="fragment">JA</span><br />
+					<span class="fragment">aber formatiert</span>
+					<p class="fragment">
+					Vorteile:
+					<ul>
+						<li>Kein Problem mit verteilte Umgebung</li>
+						<li>Gute Integration ins Ökosystem</li>
+						<li>Einfach zu implementieren</li>
+					</ul>
+					</p>
 				</section>
 				<section>
-					Logging
-				</section>
-				<section>
-					...
+					<h3>Microservice mit .net</h3>
+					<ul>
+						<li>Verwendung eines gemeinsamen Basisimage 
+							<ul>
+								<li>Gleiche Version von .net und Abhängigkeiten für alle Serviceimages</li>
+								<li>Geringere Build-Zeiten</li>
+							</ul>
+						</li>
+						<li>Infrastruktur-Container ggf. trotz Abhängigkeit  noch nicht verfügbar (Reliability / Retry) </li>
+						<li>Build outside bevorzugen</li>
+						<li>Linux-Container besser auf Linux statt Windows-Host erstellen</li>
+					</ul>
 				</section>
 			</section>
 			<section>
@@ -919,11 +1008,7 @@ sudo systemctl start docker</code></pre>
 					</ul>
 				</section>
 			</section>
-			<section>
-				<section>
-					<h2>CI / DC mit TFS / Visual Studio Team Services</h2>
-				</section>
-			</section>
+			
 			<section>
 				<section>
 					<h2>GitHub + Docker Hub</h2>
@@ -1035,13 +1120,88 @@ sudo systemctl start docker</code></pre>
 					</p>
 				</section>
 				<section>
-					Befehle Docker SWARM
+					<h3>Docker Swarm <a href ="https://docs.docker.com/engine/reference/commandline/swarm/" target="_blank" class="infolink"></a> </h3>
+					<h4>Cluster / Swarm initalisieren</h4>
+					<pre><code class="docker">docker swarm init [OPTIONS] </code></pre>
+					<p style="text-align: left">
+						Nach erfolgreicher Erstellung werden der Token und Befehl zum Hinzufügen angezeigt.
+					</p>
+					<h4>Knoten hinzufügen</h4>
+					<pre><code class="docker">docker swarm join [OPTIONS] HOST:PORT</code></pre>
+					<p style="text-align: left">
+						-- token Zugriffstoken
+					</p>
+					
 				</section>
 				<section>
-					Befehle Docker Node
+				<h4>Knoten entfernen</h4>
+				<pre><code class="docker">docker swarm leave [OPTIONS]</code></pre>
+				<p style="text-align: left">
+					--force, -f Erzwingt das Verlassung und ignoriert Warnungen
+					WICHTIG: die Node muss noch mein Manager abgemeldet werden!
+				</p>
+				<h4>Zugriffstoken anzeigen</h4>
+					<pre><code class="docker">docker swarm join-token [OPTIONS] (worker|manager)</code></pre>
+				<h4>Cluster / Swarm aktualsieren</h4>
+					<pre><code class="docker">docker swarm Update [OPTIONS]</code></pre>
 				</section>
 				<section>
-					Befehle Docker Service
+					<h3>Docker Node <a href="https://docs.docker.com/engine/reference/commandline/node/" targe="_blank" class="infolink"></a></h3>
+					<h4>Knoten anzeigen</h4>
+					<pre><code class="docker">docker node ls [OPTIONS]</code></pre>
+					<h4>Detailierte Informationen zu / zum Knoten anzeigen</h4>
+					<pre><code class="docker">docker node inspect [OPTIONS] self|NODE </code></pre>
+					<h4>Aufgaben / Prozesse eines Knoten anzeigen</h4>
+					<pre><code class="docker">docker node ps [OPTIONS] [NODE] </code></pre>
+					<h4>Knoten aus dem Cluster entfernen</h4>
+					<pre><code class="docker">docker node rm [OPTIONS] Node</code></pre>
+				</section>
+				<section>
+					<h4>Knoten vom Worker zum Manager heraufstufen</h4>
+					<pre><code class="docker">docker node promote NODE</code></pre>
+					<h4>Knoten vom Manager zum Worker herabstufen</h4>
+					<pre><code class="docker">docker node demote NODE</code></pre>
+				</section>
+				<section>
+					<h3>Services / Anwendung</h3>
+					Anwendungen die Cluster bereitgestellt werden, werden als Services bezeichnet.
+					Um den Service auf mehreren Nodes bereitzustellen, muss das Image in einer Registry abgelegt sein.
+					<br />
+					<br />
+					<h4>Service erstellen <a href="https://docs.docker.com/engine/reference/commandline/service_create/" target="_blank" class="infolink"></a></h4>
+					<pre><code class="docker">docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]</code></pre>
+					<table>
+	 			<tbody>
+		 <tr>
+			 <td>--name</td>
+			 <td>Name für den Service</td>
+		 </tr>
+		 <tr>
+			 <td>--network</td>
+			 <td>Verwendetes Netzwerk</td>
+		 </tr>
+		  <tr>
+			 <td>--publish, -p</td>
+			 <td>Veröffentlicht den Port</td>
+		 </tr>
+		  <tr>
+			 <td>--replicas</td>
+			 <td>Zahl der gleichzeitig laufenden Instanzen</td>
+		 </tr>
+</tbody>
+</table>
+				</section>
+				<section>
+					<h4>Services entfernen <a href="https://docs.docker.com/engine/reference/commandline/service_rm/" target="_blank" class="infolink"></a></h4>
+					<pre><code class="docker">docker service rm SERVICE</code></pre>
+					<h4>Services anzeigen <a href="https://docs.docker.com/engine/reference/commandline/service_ls/" target="_blank" class="infolink"></a></h4>
+					<pre><code class="docker">docker service ls [OPTIONS] </code></pre>
+					<h4>Details zu / zum Services anzeigen <a href="https://docs.docker.com/engine/reference/commandline/service_inspect/" target="_blank" class="infolink"></a></h4>
+					<pre><code class="docker">docker service inspect [OPTIONS] SERVICE</code></pre>
+					<h4>Services hoch/runter skalieren <a href="https://docs.docker.com/engine/reference/commandline/service_scale/" target="_blank" class="infolink"></a></h4>
+					<pre><code class="docker">docker service scale SERVICE=ANZAHL</code></pre>
+					<h4>Logs eines Services anzeinge <a href="https://docs.docker.com/engine/reference/commandline/service_logs/" target="_blank" class="infolink"></a></h4>
+					<pre><code class="docker">docker service logs [OPTIONS] SERVICE</code></pre>
 				</section>
 			
 			</section>
@@ -1060,9 +1220,19 @@ sudo systemctl start docker</code></pre>
 					Bestimmte Funktionen z.B. die Unterstützung für Swarm steht nur als Quellcode bereit.
 				</section>
 				<section>
-					Verbindungsaufbau
-					- Windows
-					- Linux
+					<h3>Verbindungsaufbau</h3>
+					Für den Aufbau der Verbindung können verschiedene Protokolle z.B. Http oder Linux-Sockets verwendet.
+					Letztes erlaubt auch die Verwendung in einem Container.
+					<br />
+					<br />
+					Windows (Docker for Windows)
+					<br />
+					<pre><code class="cs">var client = new DockerClientConfiguration(new Uri(http://localhost:2375)).CreateClient();</code></pre>
+					<br />
+					Linux (innerhalb eines Container)
+					<pre><code class="cs">var client = new DockerClientConfiguration(new Uri(unix://var/run/docker.sock)).CreateClient();</code></pre>
+					Bei Start benötigt der Container zusätzliche Rechte<br />
+					<pre><code class="docker">docker run -d --privileged user/myimage</code></pre>
 				</section>
 				<section>
 					Abfrage Container / Images
@@ -1072,7 +1242,11 @@ sudo systemctl start docker</code></pre>
 				</section>
 				<section>
 					Beispiel: Webhook für automatische Bereitstellung
-
+				</section>
+				<section>
+				<section>
+					<h2>CI / DC mit TFS / Visual Studio Team Services</h2>
+				</section>
 				</section>
 				<section>
 					<h3>Konfiguration des Webhook</h3>

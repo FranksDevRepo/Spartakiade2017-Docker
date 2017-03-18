@@ -9,7 +9,7 @@ namespace FP.Spartakiade2017.Docker.Environment
     {
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            container.Register(new MessageRepository(EnvironmentVariable.GetValueOrDefault("MessageConnectionString", "mongodb://localhost")));
+            container.Register(new MessageRepository("mongodb://localhost"));
             base.ApplicationStartup(container, pipelines);
         }
     }
